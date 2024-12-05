@@ -100,9 +100,18 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster;
+var currentPoster; // this will likely save the return value of createPoster()
+//we will need a variable(s) pointing to the original placeholder values for the posterDONE
+  // will likely use querySelector() for theseDONE
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var newPosterBtn = document.querySelector('.show-random');
 
 // event listeners go here 👇
+document.addEventListener('DOMContentLoaded', loadNewPoster());
+newPosterBtn.addEventListener("click", loadNewPoster);
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -115,5 +124,27 @@ function createPoster(imageURL, title, quote) {
     id: Date.now(), 
     imageURL: imageURL, 
     title: title, 
-    quote: quote}
+    quote: quote
+  }
 }
+
+function loadNewPoster() {
+  var newTitleData = titles[getRandomIndex(titles)];
+  var newQuoteData = quotes[getRandomIndex(quotes)];
+  var newImageData = images[getRandomIndex(images)];
+  currentPoster = createPoster(newImageData, newTitleData, newQuoteData);
+  posterImage.src = currentPoster.imageURL;
+  posterTitle.innerHTML = currentPoster.title;
+  posterQuote.innerHTML = currentPoster.quote;
+}
+
+/*
+listen for page loading DONE
+when page is loaded automatically load a random poster
+this means collecting the 3 random poster elements
+then overwriting the original placeholders DONE
+
+another listener for the random poster button
+should be click type
+when button is clicked a new poster should be generated
+*/
