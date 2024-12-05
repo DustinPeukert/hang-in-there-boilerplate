@@ -100,17 +100,26 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster; // this will likely save the return value of createPoster()
-//we will need a variable(s) pointing to the original placeholder values for the posterDONE
-  // will likely use querySelector() for theseDONE
+var currentPoster;
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
+var mainPosterPage = document.querySelector('.main-poster');
+var formPage = document.querySelector('.poster-form');
+var savedPostersPage = document.querySelector('.saved-posters');
 var newPosterBtn = document.querySelector('.show-random');
+var makeYourOwnBtn = document.querySelector('.show-form');
+var showSavedBtn = document.querySelector('.show-saved');
+var showMainBtn = document.querySelector('.show-main');
+var backToMainBtn = document.querySelector('.back-to-main');
 
 // event listeners go here 👇
-document.addEventListener('DOMContentLoaded', loadNewPoster());
+document.addEventListener("DOMContentLoaded", loadNewPoster());
 newPosterBtn.addEventListener("click", loadNewPoster);
+makeYourOwnBtn.addEventListener("click", showForm);
+showSavedBtn.addEventListener("click", showSaved);
+showMainBtn.addEventListener("click", showMain);
+backToMainBtn.addEventListener("click", showMain);
 
 
 // functions and event handlers go here 👇
@@ -129,22 +138,38 @@ function createPoster(imageURL, title, quote) {
 }
 
 function loadNewPoster() {
-  var newTitleData = titles[getRandomIndex(titles)];
-  var newQuoteData = quotes[getRandomIndex(quotes)];
-  var newImageData = images[getRandomIndex(images)];
-  currentPoster = createPoster(newImageData, newTitleData, newQuoteData);
+  currentPoster = createPoster(
+    images[getRandomIndex(images)],
+    titles[getRandomIndex(titles)],
+    quotes[getRandomIndex(quotes)]
+  );
   posterImage.src = currentPoster.imageURL;
   posterTitle.innerHTML = currentPoster.title;
   posterQuote.innerHTML = currentPoster.quote;
 }
 
-/*
-listen for page loading DONE
-when page is loaded automatically load a random poster
-this means collecting the 3 random poster elements
-then overwriting the original placeholders DONE
+function showForm() {
+  mainPosterPage.classList.add("hidden");
+  formPage.classList.remove("hidden");
+}
 
-another listener for the random poster button
-should be click type
-when button is clicked a new poster should be generated
+function showSaved() {
+  mainPosterPage.classList.add("hidden");
+  savedPostersPage.classList.remove("hidden");
+}
+
+function showMain() {
+  mainPosterPage.classList.remove("hidden");
+  savedPostersPage.classList.add("hidden");
+  formPage.classList.add("hidden");
+}
+
+/*
+we need to query the Make Your Own Poster button
+we need to add a click event listener
+we need it to reference a function
+
+
+that function should hide the main poster (by adding .hidden as a class)
+and unhide the form (by removing the .hidden class)
 */
