@@ -112,10 +112,14 @@ var makeYourOwnBtn = document.querySelector('.show-form');
 var showSavedBtn = document.querySelector('.show-saved');
 var showMainBtn = document.querySelector('.show-main');
 var backToMainBtn = document.querySelector('.back-to-main');
-var makePosterBtn = document.querySelector('.make-poster')
+var makePosterBtn = document.querySelector('.make-poster');
+var savePosterBtn = document.querySelector('.save-poster');
 var userURL = document.querySelector('#poster-image-url');
 var userTitle = document.querySelector('#poster-title');
 var userQuote = document.querySelector('#poster-quote');
+var posterGrid = document.querySelector('.saved-posters-grid');
+
+var posterID; `use to store current poster id`
 
 // event listeners go here 👇
 document.addEventListener("DOMContentLoaded", loadNewPoster());
@@ -124,7 +128,8 @@ makeYourOwnBtn.addEventListener("click", showForm);
 showSavedBtn.addEventListener("click", showSaved);
 showMainBtn.addEventListener("click", showMain);
 backToMainBtn.addEventListener("click", showMain);
-makePosterBtn.addEventListener("click", makePoster);
+savePosterBtn.addEventListener("click", savePoster);
+
 
 
 // functions and event handlers go here 👇
@@ -188,12 +193,22 @@ function makePoster(event) {
   userQuote.value = "";
 }
 
-/*
-we need to query the Make Your Own Poster button
-we need to add a click event listener
-we need it to reference a function
+function savePoster() {
+  if (savedPosters.length === 0) {
+    savedPosters.push(currentPoster);
+  } else {
+    savedPosters.forEach(poster => {
+      if (poster.id != currentPoster.id) {
+        savedPosters.push(currentPoster);
+      } else {
+        console.log("That's the same poster.");
+      }
+    });
+  }
+}
 
-
-that function should hide the main poster (by adding .hidden as a class)
-and unhide the form (by removing the .hidden class)
-*/
+// function displayPoster () {
+// 
+// 
+// 
+// }
