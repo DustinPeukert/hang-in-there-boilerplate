@@ -128,6 +128,7 @@ showMainBtn.addEventListener("click", showMain);
 backToMainBtn.addEventListener("click", showMain);
 savePosterBtn.addEventListener("click", savePoster);
 showSavedBtn.addEventListener("click", displayPoster);
+makePosterBtn.addEventListener("click", makePoster);
 
 
 // functions and event handlers go here 👇
@@ -219,3 +220,21 @@ function displayPoster () {
     }
   })
 }
+
+// add new unmotivational posters data
+
+// add HTML for a new page
+// - a title of "unmotivational posters"
+// - a div that will hold the displayed posters(very similar to the one we already have)
+// - a back to main button
+// - add new HTML button for unmotivational poster creation
+
+// add variable for button with queryselector
+// add eventlistener for button click, points to showUnmotivationalPosters function
+
+// function showUnmotivationalPoster
+// - hides all other pages
+// - unhides this page
+// Make sure to go back and update the previous showFunctions
+
+//Find and fix the custom poster creation issue
