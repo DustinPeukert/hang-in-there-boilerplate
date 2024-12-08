@@ -205,21 +205,9 @@ function savePoster() {
   }
 }
 
-// function displayPoster () {
-//   loop through savedPosters
-//     check if current posterID already exists (conditional)
-//     if true, add the poster to the html:
-//       create a string variable with poster information in HTML
-//       add a div element with created variable using innerHTML
-//     if false, skip to the next poster
-//   end loop
-// }
-
 function displayPoster () {
   savedPosters.forEach(poster => {
-    if (document.getElementById(`${poster.id}`)) {
-      console.log("element exists");
-    } else {
+    if (!document.getElementById(`${poster.id}`)) {
       posterHTML = `
         <div class="mini-poster" id="${poster.id}">
           <img src="${poster.imageURL}">
