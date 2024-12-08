@@ -119,8 +119,6 @@ var userTitle = document.querySelector('#poster-title');
 var userQuote = document.querySelector('#poster-quote');
 var posterGrid = document.querySelector('.saved-posters-grid');
 
-var posterID; `use to store current poster id`
-
 // event listeners go here 👇
 document.addEventListener("DOMContentLoaded", loadNewPoster());
 newPosterBtn.addEventListener("click", loadNewPoster);
@@ -129,7 +127,7 @@ showSavedBtn.addEventListener("click", showSaved);
 showMainBtn.addEventListener("click", showMain);
 backToMainBtn.addEventListener("click", showMain);
 savePosterBtn.addEventListener("click", savePoster);
-
+showSavedBtn.addEventListener("click", displayPoster);
 
 
 // functions and event handlers go here 👇
@@ -208,7 +206,28 @@ function savePoster() {
 }
 
 // function displayPoster () {
-// 
-// 
-// 
+//   loop through savedPosters
+//     check if current posterID already exists (conditional)
+//     if true, add the poster to the html:
+//       create a string variable with poster information in HTML
+//       add a div element with created variable using innerHTML
+//     if false, skip to the next poster
+//   end loop
 // }
+
+function displayPoster () {
+  savedPosters.forEach(poster => {
+    if (document.getElementById(`${poster.id}`)) {
+      console.log("element exists");
+    } else {
+      posterHTML = `
+        <div class="mini-poster" id="${poster.id}">
+          <img src="${poster.imageURL}">
+          <h2>${poster.title}</h2>
+          <h4>${poster.quote}</h4>
+        </div>
+      `;
+      posterGrid.innerHTML += posterHTML;
+    }
+  })
+}
