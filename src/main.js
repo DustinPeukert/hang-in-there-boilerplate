@@ -249,6 +249,7 @@ var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid');
 document.addEventListener("DOMContentLoaded", () => {
   loadNewPoster();
   cleanData();
+  displayPoster(cleanedPosterData, unmotivationalGrid);
 })
 newPosterBtn.addEventListener("click", loadNewPoster);
 makeYourOwnBtn.addEventListener("click", showForm);
@@ -259,10 +260,12 @@ showSavedBtn.addEventListener("click", () => displayPoster(savedPosters, posterG
 makePosterBtn.addEventListener("click", makePoster);
 unmotivationalBtn.addEventListener("click", () => {
   showUnmotivationalPage();
-  displayPoster(cleanedPosterData, unmotivationalGrid);
 });
 backToMainBtns.forEach(button => {
   button.addEventListener("click", showMain);
+})
+unmotivationalGrid.addEventListener("dblclick", (event) => {
+  deleteChild(event);
 })
 
 
@@ -291,7 +294,6 @@ function cleanData() {
     };
     cleanedPosterData.push(posterInfo);
   })
-  console.log(cleanedPosterData);
 }
  
 function loadNewPoster() {
@@ -375,20 +377,10 @@ function displayPoster (posterArray, grid) {
   })
 }
 
-// add new unmotivational posters data
-
-// add HTML for a new page
-// - a title of "unmotivational posters"
-// - a div that will hold the displayed posters(very similar to the one we already have)
-// - a back to main button
-// - add new HTML button for unmotivational poster creation
-
-// add variable for button with queryselector
-// add eventlistener for button click, points to showUnmotivationalPosters function
-
-// function showUnmotivationalPoster
-// - hides all other pages
-// - unhides this page
-// Make sure to go back and update the previous showFunctions
-
-//Find and fix the custom poster creation issue
+function deleteChild(event) {
+  if (event.target.closest('.mini-poster')) {
+    event.target.closest('.mini-poster').remove();
+  } else {
+    console.log("Nothing Happens.")
+  }
+}
