@@ -144,3 +144,32 @@ button:hover {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+.unmotivational-posters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 0
+}
+
+.unmotivational-posters-grid > div {
+  background-color: grey;
+  border-radius: 15px;
+  margin: 0
+}
+
+.unmotivational-posters-grid > div h2 {
+  color: black;
+  padding-top: 20px;
+}
+
+.unmotivational-posters button {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.unmotivational-posters > h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
