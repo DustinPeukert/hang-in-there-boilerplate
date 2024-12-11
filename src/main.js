@@ -302,9 +302,7 @@ function loadNewPoster() {
     titles[getRandomIndex(titles)],
     quotes[getRandomIndex(quotes)]
   );
-  posterImage.src = currentPoster.imageURL;
-  posterTitle.innerHTML = currentPoster.title;
-  posterQuote.innerHTML = currentPoster.quote;
+  updatePosterDetails();
 }
 
 function showForm() {
@@ -336,13 +334,25 @@ function makePoster(event) {
     userTitle.value,
     userQuote.value
   );
+  updatePosterDetails();
+  savePosterDetails();
+  showMain();
+  clearUserInputs();
+}
+
+function updatePosterDetails() {
   posterImage.src = currentPoster.imageURL;
   posterTitle.innerHTML = currentPoster.title;
   posterQuote.innerHTML = currentPoster.quote;
+}
+
+function savePosterDetails() {
   images.push(currentPoster.imageURL);
   titles.push(currentPoster.title);
   quotes.push(currentPoster.quote);
-  showMain();
+}
+
+function clearUserInputs() {
   userURL.value = "";
   userTitle.value = "";
   userQuote.value = "";
@@ -388,7 +398,7 @@ function deleteChild(event) { // Remove from clean data as well!!!
 function deleteFromCleanData(id) {
   console.log(cleanedPosterData);
   var newCleanedData = cleanedPosterData.filter((poster) => {
-    return poster.id.toString() !== id;
+    return poster.id != id;
   })
   cleanedPosterData = newCleanedData;
   console.log(cleanedPosterData);
