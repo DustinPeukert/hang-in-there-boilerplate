@@ -385,13 +385,13 @@ function displayPoster (posterArray, grid) {
   })
 }
 
-function deleteChild(event) { // Remove from clean data as well!!!
+function deleteChild(event) {
   poster = event.target.closest('.mini-poster');
   if (poster) {
     deleteFromCleanData(poster.id);
     poster.remove();
   } else {
-    console.log("Nothing Happens.")
+    console.log("Nothing Happens.");
   }
 }
 
