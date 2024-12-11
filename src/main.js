@@ -364,16 +364,14 @@ function savePoster() {
 
 function displayPoster (posterArray, grid) {
   posterArray.forEach(poster => {
-    if (!document.getElementById(`${poster.id}`)) { //remove excess code
-      let posterHTML = `
-        <div class="mini-poster" id="${poster.id}">
-          <img src="${poster.imageURL}">
-          <h2>${poster.title}</h2>
-          <h4>${poster.quote}</h4>
-        </div>
-      `;
-      grid.innerHTML += posterHTML;
-    }
+    let posterHTML = `
+      <div class="mini-poster" id="${poster.id}">
+        <img src="${poster.imageURL}">
+        <h2>${poster.title}</h2>
+        <h4>${poster.quote}</h4>
+      </div>
+    `;
+    grid.innerHTML += posterHTML;
   })
 }
 
