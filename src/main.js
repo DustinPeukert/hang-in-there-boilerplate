@@ -364,23 +364,32 @@ function savePoster() {
 
 function displayPoster (posterArray, grid) {
   posterArray.forEach(poster => {
-    if (!document.getElementById(`${poster.id}`)) {
-      let posterHTML = `
-        <div class="mini-poster" id="${poster.id}">
-          <img src="${poster.imageURL}">
-          <h2>${poster.title}</h2>
-          <h4>${poster.quote}</h4>
-        </div>
-      `;
-      grid.innerHTML += posterHTML;
-    }
+    let posterHTML = `
+      <div class="mini-poster" id="${poster.id}">
+        <img src="${poster.imageURL}">
+        <h2>${poster.title}</h2>
+        <h4>${poster.quote}</h4>
+      </div>
+    `;
+    grid.innerHTML += posterHTML;
   })
 }
 
-function deleteChild(event) {
-  if (event.target.closest('.mini-poster')) {
-    event.target.closest('.mini-poster').remove();
+function deleteChild(event) { // Remove from clean data as well!!!
+  poster = event.target.closest('.mini-poster');
+  if (poster) {
+    deleteFromCleanData(poster.id);
+    poster.remove();
   } else {
     console.log("Nothing Happens.")
   }
+}
+
+function deleteFromCleanData(id) {
+  console.log(cleanedPosterData);
+  var newCleanedData = cleanedPosterData.filter((poster) => {
+    return poster.id.toString() !== id;
+  })
+  cleanedPosterData = newCleanedData;
+  console.log(cleanedPosterData);
 }
