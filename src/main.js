@@ -359,20 +359,20 @@ function clearUserInputs() {
 }
 
 function savePoster() {
-  if (savedPosters.length === 0) {
+  const duplicatePosters = savedPosters.filter((poster) => {
+    return poster.id == currentPoster.id;
+  })
+
+  if (duplicatePosters.length === 0) {
     savedPosters.push(currentPoster);
   } else {
-    savedPosters.forEach(poster => {
-      if (poster.id != currentPoster.id) {
-        savedPosters.push(currentPoster);
-      } else {
-        console.log("That's the same poster.");
-      }
-    });
+    console.log("That's the same poster.");
   }
 }
 
 function displayPoster (posterArray, grid) {
+  grid.innerHTML = "";
+
   posterArray.forEach(poster => {
     let posterHTML = `
       <div class="mini-poster" id="${poster.id}">
