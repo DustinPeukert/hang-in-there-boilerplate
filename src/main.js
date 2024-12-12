@@ -386,7 +386,7 @@ function displayPoster (posterArray, grid) {
 }
 
 function deleteChild(event) {
-  poster = event.target.closest('.mini-poster');
+  let poster = event.target.closest('.mini-poster');
   if (poster) {
     deleteFromCleanData(poster.id);
     poster.remove();
