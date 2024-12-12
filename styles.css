@@ -150,7 +150,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 15px 0
+  padding: 15px 0;
 }
 
 .unmotivational-posters-grid > div {
